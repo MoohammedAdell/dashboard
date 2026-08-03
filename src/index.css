@@ -13,7 +13,6 @@
   --primary-hover: #1d4ed8;
   --secondary: #3b82f6;
   --background: #f8faf0;
-  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   --surface: #ffffff;
   --border: #e2e8f0;
   --border-focus: #2563eb;
@@ -34,23 +33,14 @@
 /* ==========================================================================
    Global Reset
    ========================================================================== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  transition: var(--transition);
-}
 
 html,
 body {
   height: 100%;
   width: 100%;
   font-family: var(--font-family);
-  background: var(--bg-gradient);
-  background-attachment: fixed;
-  color: var(--text);
+  /* تم إزالة background-attachment: fixed والـ Gradient الإجباري عشان الدارك مود يشتغل مع Tailwind */
+  color: var(--surface);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -61,7 +51,6 @@ input,
 a {
   font-family: inherit;
   font-size: inherit;
-  color: inherit;
 }
 
 a {
@@ -77,16 +66,16 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #334155;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--muted-text);
+  background: #475569;
 }
 
 /* ==========================================================================
@@ -98,7 +87,7 @@ a {
 }
 
 /* ==========================================================================
-   Global Utility / Component Classes
+   Global Utility / Component Classes (خاصة بالـ Auth فقط)
    ========================================================================== */
 .auth-wrapper {
   display: flex;
@@ -107,6 +96,7 @@ a {
   min-height: 100vh;
   width: 100%;
   padding: 20px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
 .container {
@@ -185,6 +175,7 @@ a {
   font-size: 14px;
   color: var(--title);
   outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .input::placeholder {
@@ -218,6 +209,7 @@ a {
   border: none;
   cursor: pointer;
   margin-top: 8px;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 .btn-primary {
