@@ -1,6 +1,7 @@
 import React from "react";
 import { Menu, Search, Bell, MessageSquare, User } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const pageTitles = {
   "/dashboard": "Dashboard",
@@ -13,10 +14,14 @@ const pageTitles = {
 };
 
 export default function Navbar() {
+  const { user } = useAuth();
+
+  const navigate = useNavigate();
+
   const location = useLocation();
   const currentTitle = pageTitles[location.pathname] || "Dashboard";
   return (
-    <header className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-4 py-3 shadow-xs transition-colors duration-300">
+    <header className="w-full rounded-2xl px-4 py-3 shadow-xs transition-colors duration-300">
       <div className="flex items-center justify-between gap-4">
         {/* Left Side: Menu Icon & Search Bar */}
         <div className="flex items-center gap-3 flex-1 max-w-md">
@@ -24,10 +29,11 @@ export default function Navbar() {
             <h1 className="text-2xl font-bold text-slate-800 dark:text-white">
               {currentTitle}
             </h1>
-
-            <p className="text-sm text-slate-500 dark:text-slate-400">
-              Welcome back 👋
-            </p>
+            {currentTitle === "Dashboard" && (
+              <p className="text-sm text-slate-500 dark:text-slate-400">
+                Welcome back 👋,{user.email}
+              </p>
+            )}
           </div>
 
           <div className="relative flex-1">
@@ -57,7 +63,10 @@ export default function Navbar() {
           </button>
 
           {/* User Profile */}
-          <button className="p-2.5 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition cursor-pointer">
+          <button
+            onClick={() => navigate("/dashboard/profile")}
+            className="p-2.5 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition cursor-pointer"
+          >
             <User size={19} />
           </button>
         </div>
