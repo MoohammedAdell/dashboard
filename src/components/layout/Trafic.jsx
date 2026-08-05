@@ -4,7 +4,7 @@ import ChartTraffic from "./ChartTraffic";
 
 export default function Trafic() {
   return (
-    <div className="bg-gray-900 rounded-lg px-4 pt-6 h-full">
+    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm transition-colors">
       <Card titleLeft="Traffic Source">
         <ChartTraffic />
       </Card>

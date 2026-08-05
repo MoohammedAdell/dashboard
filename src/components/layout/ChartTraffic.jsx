@@ -1,5 +1,6 @@
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { useTheme } from "@/context/ThemeContext";
 
 const trafficSourceData = [
   { name: "Direct", value: 45, color: "#8b5cf6" },
@@ -7,7 +8,10 @@ const trafficSourceData = [
   { name: "Social Media", value: 15, color: "#10b981" },
   { name: "Referral", value: 10, color: "#d97706" },
 ];
+
 export default function ChartTraffic() {
+  const { isDark } = useTheme();
+
   return (
     <div className="flex items-center justify-between gap-2 h-45">
       {/* Donut Chart */}
@@ -30,10 +34,12 @@ export default function ChartTraffic() {
             </Pie>
             <Tooltip
               contentStyle={{
-                backgroundColor: "#0f172a",
-                borderColor: "#334155",
+                backgroundColor: isDark ? "#0f172a" : "#ffffff",
+                borderColor: isDark ? "#334155" : "#e2e8f0",
+                color: isDark ? "#ffffff" : "#0f172a",
                 borderRadius: "8px",
                 fontSize: "12px",
+                boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
               }}
             />
           </PieChart>
@@ -52,9 +58,13 @@ export default function ChartTraffic() {
                 className="w-2.5 h-2.5 rounded-full shrink-0"
                 style={{ backgroundColor: item.color }}
               />
-              <span className="text-slate-300 truncate">{item.name}</span>
+              <span className="text-slate-600 dark:text-slate-300 truncate">
+                {item.name}
+              </span>
             </div>
-            <span className="font-semibold text-white ml-2">{item.value}%</span>
+            <span className="font-semibold text-slate-900 dark:text-white ml-2">
+              {item.value}%
+            </span>
           </div>
         ))}
       </div>

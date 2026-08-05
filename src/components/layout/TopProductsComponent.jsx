@@ -1,16 +1,16 @@
-import { ArrowDownRight, ArrowUpRight, Atom, Box, Monitor, Smartphone } from "lucide-react";
 import React from "react";
+import { ArrowDownRight, ArrowUpRight, Atom, Box, Monitor, Smartphone } from "lucide-react";
 
- const topProducts = [
+const topProducts = [
   {
     id: 1,
     name: "UI/UX Design Kit",
     price: "$2,543",
-    percentage: 80, // للبروجريس بار
+    percentage: 80,
     change: "+12.5%",
     isPositive: true,
     icon: Box,
-    iconBg: "bg-purple-600/20 text-purple-400 border-purple-500/20",
+    iconBg: "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20",
     barColor: "bg-purple-500",
   },
   {
@@ -21,7 +21,7 @@ import React from "react";
     change: "+8.7%",
     isPositive: true,
     icon: Atom,
-    iconBg: "bg-blue-600/20 text-blue-400 border-blue-500/20",
+    iconBg: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
     barColor: "bg-blue-500",
   },
   {
@@ -32,7 +32,7 @@ import React from "react";
     change: "-3.2%",
     isPositive: false,
     icon: Monitor,
-    iconBg: "bg-emerald-600/20 text-emerald-400 border-emerald-500/20",
+    iconBg: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
     barColor: "bg-emerald-500",
   },
   {
@@ -43,11 +43,10 @@ import React from "react";
     change: "+6.1%",
     isPositive: true,
     icon: Smartphone,
-    iconBg: "bg-amber-600/20 text-amber-400 border-amber-500/20",
+    iconBg: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
     barColor: "bg-amber-500",
   },
 ];
-
 
 export default function TopProductsComponent() {
   return (
@@ -66,31 +65,32 @@ export default function TopProductsComponent() {
               >
                 <Icon size={18} />
               </div>
-              <span className="text-xs font-medium text-slate-200 truncate">
+              <span className="text-xs font-medium text-slate-700 dark:text-slate-200 truncate">
                 {product.name}
               </span>
             </div>
 
             {/* Progress, Price & Badge */}
             <div className="flex items-center gap-3 shrink-0">
-              {/* Custom Progress Bar */}
-              <div className="w-16 h-1.5 bg-slate-800 rounded-full overflow-hidden hidden sm:block">
+              {/* Progress Bar Track */}
+              <div className="w-16 h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden hidden sm:block">
                 <div
                   className={`h-full rounded-full ${product.barColor}`}
                   style={{ width: `${product.percentage}%` }}
                 />
               </div>
 
-              <span className="text-xs font-semibold text-white w-12 text-right">
+              {/* Price */}
+              <span className="text-xs font-semibold text-slate-900 dark:text-white w-12 text-right">
                 {product.price}
               </span>
 
-              {/* Percentage Change Badge */}
+              {/* Change Badge */}
               <span
                 className={`text-[11px] font-semibold px-2 py-0.5 rounded-md flex items-center gap-0.5 ${
                   product.isPositive
-                    ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                    : "bg-rose-500/10 text-rose-400 border border-rose-500/20"
+                    ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"
+                    : "bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20"
                 }`}
               >
                 {product.isPositive ? (
